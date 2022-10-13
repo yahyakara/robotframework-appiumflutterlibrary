@@ -53,6 +53,20 @@ class _ApplicationManagementKeyWords(KeywordGroup):
         """
         self._debug("Closing all applications")
         self._cache.close_all()
+        
+     def execute_adb_shell(self, command, *args):
+        """
+        Execute ADB shell commands
+        Android only.
+        - _command_ - The ABD shell command
+        - _args_ - Arguments to send to command
+        Returns the exit code of ADB shell.
+        Requires server flag --relaxed-security to be set on Appium server.
+        """
+        return self._current_application().execute_script('mobile: shell', {
+            'command': command,
+            'args': list(args)
+        })
 
     def close_application(self):
         """Closes the current application and also close webdriver session."""
