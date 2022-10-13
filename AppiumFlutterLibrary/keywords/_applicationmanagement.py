@@ -39,7 +39,7 @@ class _ApplicationManagementKeyWords(KeywordGroup):
         
     def enable_driver_text_entry(self, enabled:bool = True):
         self._debug("Set Flutter Enable Driver Text Input")
-        self._current_application().application.execute_script('flutter:setTextEntryEmulation', enabled)
+        self._current_application().application.execute_script('flutter:setTextEntryEmulation', {'enabled': bool(enabled)})
 
     def close_all_applications(self):
         """Closes all open applications.
