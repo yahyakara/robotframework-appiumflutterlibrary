@@ -54,7 +54,7 @@ class _ApplicationManagementKeyWords(KeywordGroup):
         self._debug("Closing all applications")
         self._cache.close_all()
         
-     def execute_adb_shell(self, command, *args):
+    def execute_adb_shell(self, command, *args):
         """
         Execute ADB shell commands
         Android only.
