@@ -68,6 +68,14 @@ class _ElementKeywords(KeywordGroup):
         if element.text != text:
             raise AssertionError("Element '%s' text should be '%s' but is '%s'." %
                                     (locator, text, element.text))
+    def input_password(self, locator, text):
+        """Types the given password into text field identified by `locator`.
+        Difference between this keyword and `Input Text` is that this keyword
+        does not log the given password. See `introduction` for details about
+        locating elements.
+        """
+        self._info("Typing password into text field '%s'" % locator)
+        self._element_input_text_by_locator(locator, text)
 
     def element_text_should_not_be(self, locator, text):
         """Verify if the element text is not equal to provided text.
@@ -109,4 +117,9 @@ class _ElementKeywords(KeywordGroup):
         if element is not None:
             return element.text
         return None
-    
+
+    def _is_element_present(self, locator):
+        application = self._current_application()
+        elements = self._element_finder.find(application, locator, None)
+        return len(elements) > 0
+
