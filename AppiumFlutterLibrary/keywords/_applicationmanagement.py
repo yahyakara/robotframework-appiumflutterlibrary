@@ -37,6 +37,16 @@ class _ApplicationManagementKeyWords(KeywordGroup):
         self._debug("Reseting application")
         self._current_application().reset()
         
+   def get_capability(self, capability_name):
+        """
+        Return the desired capability value by desired capability name
+        """
+        try:
+            capability = self._current_application().capabilities[capability_name]
+        except Exception as e:
+            raise e
+        return capability
+        
     def enable_driver_text_entry(self, enabled:bool = True):
         self._debug("Set Flutter Enable Driver Text Input")
         self._current_application().execute_script('flutter:setTextEntryEmulation', {'enabled': bool(enabled)})
